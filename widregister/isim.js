@@ -25,7 +25,7 @@ message.react(config.no);
 message.channel.send(`${client.emojis.cache.get(config.no)} **İsim Yaş Belirt!**`).then(msg => msg.delete({ timeout: 5000, reason: 'mesaj silme' }));
 return;    
 };
-let taglıalım = data.fetch(`widTaglı.${message.guild.id}`);  
+let taglıalım = data.get(`widTaglı.${message.guild.id}`);  
 if (taglıalım == "Aktif") {		
 if(!widmember.user.username.includes(config.tag) && !widmember.roles.cache.has(config.vip_role) && !widmember.roles.cache.has(config.booster_role)) 
 message.react(config.no);
