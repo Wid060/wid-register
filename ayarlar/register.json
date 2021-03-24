@@ -1,0 +1,21 @@
+{
+    "register_staff" : "Kayıt Yetkili Rol ID",
+    "nick_staff" : "İsim Değiştirme Yetkili ID",
+    "booster_role" : "Booster Rol ID",
+    "vip_role" : "VIP Rol ID",
+    "unregister_roles" : "Kayıtsız Rol ID",
+    "karantina_role" : "Yeni Hesap Rol ID",
+    "man_role" : "Erkek Rol ID",
+    "man_role2" : "Erkek Rol 2 ID",
+    "woman_role" : "Kız Rol ID",
+    "woman_role2" : "Kız Rol 2 ID",
+    "tag_role" : "Tag Rol ID",
+    "tag" : "TAGINIZ",
+    "untag" : "TAGSIZ SEMBOLÜ",
+    "register_channel" : "Kayıt Kanal ID",
+    "register_log" : "Yapılan Kayıtların Log Kanal ID",
+    "tag_log" : "Tag Log Kanal ID",
+    "BOT_OTO_ROL" : "Botlara Verilcek Rol ID",
+    "yes" : "YES EMOJİ ID",
+    "no" : "NO EMOJİ ID"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "wid-register",
+  "version": "1.0.3",
+  "description": "Public sunucular için register bot altyapısı",
+  "main": "wid-main.js",
+  "scripts": {
+    "test": "node wid-main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wid060/wid-register.git"
+  },
+  "keywords": [
+    "discord",
+    "register"
+  ],
+  "author": "Wid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wid060/wid-register/issues"
+  },
+  "homepage": "https://github.com/Wid060/wid-register#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.29.1",
+    "wio.db": "^4.0.17"
+  }
+}
