@@ -46,7 +46,7 @@ Tarih: tarih,
 })
 var sayi = 1
 let wida = kdb.get(`Widİsim.${message.guild.id}`)
-let kayıtlar = wida.filter(x => x.widuye === widmember.id).sorted.splice(0, 3).map(nix => `${sayi++}- \`• ${nix.isim}\`  [<@&${nix.role}> || <@&${nix.role2}>]\nTarih : ${nix.Tarih}`).join("\n")
+let kayıtlar = wida.filter(x => x.widuye === widmember.id).splice(0, 3).map(nix => `${sayi++}- \`• ${nix.isim}\`  [<@&${nix.role}> || <@&${nix.role2}>]\nTarih : ${nix.Tarih}`).join("\n")
 if(kayıtlar === null) isimler = "Kayıt Yok"
 if(kayıtlar === undefined) isimler = "Kayıt Yok"
 widmember.roles.cache.has(config.booster_role) ? widmember.roles.set([config.booster_role,  config.woman_role, config.woman_role2]) : widmember.roles.set([config.woman_role, config.woman_role2]);
