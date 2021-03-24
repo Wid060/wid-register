@@ -146,7 +146,7 @@ tagkanal.send(`${client.emojis.cache.get(config.yes)} ${newWid} **adlı kullanı
 }
 if (!newWid.username.includes(config.tag) && client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).roles.cache.has(config.tag_role)) 
 {
-let taglıalım = data.fetch(`widTaglı.${GUILD_ID}`);  
+let taglıalım = data.get(`widTaglı.${GUILD_ID}`);  
 if (taglıalım == "Aktif") {		
 let widmember = client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id);
 if (!widmember) return;
