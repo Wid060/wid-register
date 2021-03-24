@@ -130,7 +130,7 @@ client.on("guildMemberAdd", widMember => {
 if (widMember.user.bot) return;
 if (widMember.user.username.includes(config.tag)) {
 widMember.setNickname(`${config.tag} İsim | Yaş`)
-} else if (!widMember.user.username.includes(tag)) {
+} else if (!widMember.user.username.includes(config.tag)) {
 widMember.setNickname(`${config.untag} İsim | Yaş`)
 }})
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -142,7 +142,7 @@ if (newWid.username.includes(config.tag) && !client.guilds.cache.get(GUILD_ID).m
 {
 await client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).roles.add(config.tag_role);
 await client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).setNickname(client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).displayName.replace(config.untag, config.tag));  
-tagkanal.send(`${client.emojis.cache.get(config.yes)} ${newWid} **adlı kullanıcı \`${tag}\` sembolünü kullanıcı adına ekleyerek ekibimize katıldı.**`);
+tagkanal.send(`${client.emojis.cache.get(config.yes)} ${newWid} **adlı kullanıcı \`${config.tag}\` sembolünü kullanıcı adına ekleyerek ekibimize katıldı.**`);
 }
 if (!newWid.username.includes(config.tag) && client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).roles.cache.has(config.tag_role)) 
 {
@@ -155,7 +155,7 @@ await widmember.roles.cache.has(config.booster_role) ? widmember.roles.set([conf
 }		
 await client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).roles.remove(config.tag_role);
 await client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).setNickname(client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).displayName.replace(config.tag, config.untag));
-tagkanal.send(`${client.emojis.cache.get(config.no)} ${newWid} **adlı kullanıcı \`${tag}\` sembolünü kullanıcı adından kaldırarak ekibimizden ayrıldı.**`);
+tagkanal.send(`${client.emojis.cache.get(config.no)} ${newWid} **adlı kullanıcı \`${config.tag}\` sembolünü kullanıcı adından kaldırarak ekibimizden ayrıldı.**`);
 }}});
 ///////////////////////////////////////////////////////////////////////////////////////
 //--Bot Oto Rol--//
