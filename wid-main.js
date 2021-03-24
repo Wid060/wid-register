@@ -1,6 +1,5 @@
 const { Client, MessageEmbed, Collection } = require("discord.js");
 const client = new Client();
-const data = require("wio.db");
 const { Database } = require('wio.db');
 const kdb = new Database("isimler");
 const krank = new Database("kayıtrank");
@@ -146,7 +145,7 @@ tagkanal.send(`${client.emojis.cache.get(config.yes)} ${newWid} **adlı kullanı
 }
 if (!newWid.username.includes(config.tag) && client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id).roles.cache.has(config.tag_role)) 
 {
-let taglıalım = data.get(`widTaglı.${GUILD_ID}`);  
+let taglıalım = krank.fetch(`widTaglı.${GUILD_ID}`);  
 if (taglıalım == "Aktif") {		
 let widmember = client.guilds.cache.get(GUILD_ID).members.cache.get(newWid.id);
 if (!widmember) return;
