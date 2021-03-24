@@ -2,20 +2,21 @@ const { MessageEmbed } = require('discord.js')
 const config = require("../ayarlar/register.json");
 const { PREFIX } = require("../ayarlar/client.json");
 const data = require("wio.db");
+const moment = require("moment");
 const { Database } = require('wio.db');
 const kdb = new Database("isimler");
 const krank = new Database("kayıtrank");
 exports.run = (client,message,args) => {
 if (!message.member.roles.cache.has(config.staff_role) && !message.member.hasPermission("ADMINISTRATOR")) {
-message.react(no);
+message.react(config.no);
 return;};
 let widmember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 if(!widmember) {
-message.react(no);
+message.react(config.no);
 message.channel.send(`${client.emojis.cache.get(config.no)} **Kişi Belirt!**`).then(msg => msg.delete({ timeout: 5000, reason: 'mesaj silme' }));
 return;};
-if (message.member.roles.highest.position <= widmember.roles.highest.position) return message.channel.send(`${client.emojis.cache.get(config.no)} ${member} **senden üstün veya aynı rolde!**`).then(x => x.delete({ timeout: 5000 }));        
-if (message.member.id === widmember.id) return message.channel.send(`${client.emojis.cache.get(config.no)} ${member} **kendini kayıt edemessin!**`).then(x => x.delete({ timeout: 5000 }));
+if (message.member.roles.highest.position <= widmember.roles.highest.position) return message.channel.send(`${client.emojis.cache.get(config.no)} ${message.member} **senden üstün veya aynı rolde!**`).then(x => x.delete({ timeout: 5000 }));        
+if (message.member.id === widmember.id) return message.channel.send(`${client.emojis.cache.get(config.no)} ${message.member} **kendini kayıt edemessin!**`).then(x => x.delete({ timeout: 5000 }));
 if (!widmember.roles.cache.some(widbay => [config.man_role, config.man_role2].includes(widbay.id)) && !widmember.roles.cache.some(widbayan => [config.woman_role, config.woman_role2].includes(widbayan.id))) return message.channel.send(`${client.emojis.cache.get(config.no)} **Bu kişi zaten kayıtlı!**`).then(msg => msg.delete({ timeout: 5000, reason: 'mesaj silme' }));  
 args = args.filter(a => a !== "" && a !== " ").splice(1);
 let isim = args.filter(arg => isNaN(arg)).map(arg => arg.charAt(0).replace('i', "İ").toUpperCase()+arg.slice(1)).join(" ");
@@ -47,12 +48,12 @@ Tarih: tarih,
 var sayi = 1
 let wida = kdb.get(`Widİsim.${message.guild.id}`)
 let kayıtlar = wida.filter(x => x.widuye === widmember.id).splice(0, 3).map(nix => `${sayi++}- \`• ${nix.isim}\`  [<@&${nix.role}> || <@&${nix.role2}>]\nTarih : ${nix.Tarih}`).join("\n")
-if(kayıtlar === null) isimler = "Kayıt Yok"
-if(kayıtlar === undefined) isimler = "Kayıt Yok"
+if(kayıtlar === null) kayıtlar = "Kayıt Yok"
+if(kayıtlar === undefined) kayıtlar = "Kayıt Yok"
 widmember.roles.cache.has(config.booster_role) ? widmember.roles.set([config.booster_role,  config.woman_role, config.woman_role2]) : widmember.roles.set([config.woman_role, config.woman_role2]);
 message.react(config.yes);
 let regsterchnl = message.guild.channels.cache.get(config.register_channel);
-regsterchnl.send(new MessageEmbed().setDescription(`${client.emojis.cache.get(config.yes)} ${hedefKişi} isimli üye başarıyla kayıt edildi.\n\n${kayıtlar}\n\nTüm kayıtlar için ${PREFIX}kayıtlar`).setColor(0x2f3136).setFooter("💖 Wid Beycik",message.author.avatarURL({dynamic: true})))
+regsterchnl.send(new MessageEmbed().setDescription(`${client.emojis.cache.get(config.yes)} ${widmember} isimli üye başarıyla kayıt edildi.\n\n${kayıtlar}\n\nTüm kayıtlar için ${PREFIX}kayıtlar`).setColor(0x2f3136).setFooter("💖 Wid Beycik",message.author.avatarURL({dynamic: true})))
 let kızTeyit = krank.fetch(`kızTeyit.${message.author.id}`) || "0"
 let erkekTeyit = krank.fetch(`erkekTeyit.${message.author.id}`) || "0";
 let topTeyit = krank.fetch(`topTeyit.${message.author.id}`) || "0";
