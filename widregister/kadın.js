@@ -6,7 +6,7 @@ const { Database } = require('wio.db');
 const kdb = new Database("isimler");
 const krank = new Database("kayıtrank");
 exports.run = (client,message,args) => {
-if (!message.member.roles.cache.has(config.staff_role) && !message.member.hasPermission("ADMINISTRATOR")) {
+if (!message.member.roles.cache.has(config.register_staff) && !message.member.hasPermission("ADMINISTRATOR")) {
 message.react(config.no);
 return;};
 let widmember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
