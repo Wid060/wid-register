@@ -35,24 +35,13 @@ message.channel.send(`${client.emojis.cache.get(config.no)} **Taglı alımdayız
 return;
 }
 widmember.setNickname(nick);
-let tarih = moment(message.createdAt).format("`(DD/MM/YYYY | HH:mm:ss)`");
-kdb.push(`Widİsim.${message.guild.id}`, {
-widuye: widmember.id,
-isim: nick,
-role: config.woman_role,
-role2: config.woman_role2,
-widyetkili: message.member.tag,
-Tarih: tarih,
-})
-var sayi = 1
-let wida = kdb.get(`Widİsim.${message.guild.id}`)
-let kayıtlar = wida.filter(x => x.widuye === widmember.id).splice(0, 3).map(nix => `${sayi++}- \`• ${nix.isim}\`  [<@&${nix.role}> || <@&${nix.role2}>]\nTarih : ${nix.Tarih}`).join("\n")
-if(kayıtlar === null) kayıtlar = "Kayıt Yok"
-if(kayıtlar === undefined) kayıtlar = "Kayıt Yok"
-widmember.roles.cache.has(config.booster_role) ? widmember.roles.set([config.booster_role,  config.woman_role, config.woman_role2]) : widmember.roles.set([config.woman_role, config.woman_role2]);
+let sonkayıt = kdb.fetch(`sonkayıt.${widmember.id}`)
+if(sonkayıt === null) sonkayıt = "İlk Kaydı"
+if(sonkayıt === undefined) sonkayıt = "İlk Kaydı"
+widmember.roles.cache.has(config.tag_role) ? widmember.roles.set([config.tag_role,  config.woman_role, config.woman_role2]) : widmember.roles.set([config.woman_role, config.woman_role2]);
 message.react(config.yes);
 let regsterchnl = message.guild.channels.cache.get(config.register_channel);
-regsterchnl.send(new MessageEmbed().setDescription(`${client.emojis.cache.get(config.yes)} ${widmember} isimli üye başarıyla kayıt edildi.\n\n${kayıtlar}\n\nTüm kayıtlar için ${PREFIX}kayıtlar`).setColor(0x2f3136).setFooter("💖 Wid Beycik",message.author.avatarURL({dynamic: true})))
+regsterchnl.send(new MessageEmbed().setDescription(`${client.emojis.cache.get(config.yes)} ${widmember} isimli üye başarıyla kayıt edildi.\n\n${sonkayıt}\n\nTüm kayıtlar için ${PREFIX}kayıtlar`).setColor(0x2f3136).setFooter("💖 Wid Beycik",message.author.avatarURL({dynamic: true})))
 let kızTeyit = krank.fetch(`kızTeyit.${message.author.id}`) || "0"
 let erkekTeyit = krank.fetch(`erkekTeyit.${message.author.id}`) || "0";
 let topTeyit = krank.fetch(`topTeyit.${message.author.id}`) || "0";
@@ -73,6 +62,17 @@ const logwid = new MessageEmbed()
   .setFooter("💖 Wid Beycik",message.author.avatarURL({dynamic: true}));
   let lgwid = message.guild.channels.cache.get(config.register_log);
   lgwid.send(logwid)
+let tarih = moment(message.createdAt).format("`DD/MM/YYYY | HH:mm:ss`");
+let eskikayit = `**En Son Kayıt Bilgi**\n\n** •Tarih : ${tarih}**\n** •İsmi : \`${nick}\`**\n** •Rolleri : [<@&${config.woman_role}>|<@&${config.woman_role2}>]**\n** •Yetkili : <@${message.author.id}>**`
+kdb.set(`sonkayıt.${widmember.id}`,eskikayit)
+kdb.push(`Widİsim.${message.guild.id}`, {
+widuye: widmember.id,
+isim: nick,
+role: config.woman_role,
+role2: config.woman_role2,
+widyetkili: message.member.tag,
+Tarih: tarih,
+})
   krank.add(`kızTeyit.${message.author.id}`, 1);
   krank.add(`topTeyit.${message.author.id}`, 1);
 }
