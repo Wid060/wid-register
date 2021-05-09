@@ -1,8 +1,8 @@
 const { Client, MessageEmbed, Collection } = require("discord.js");
 const client = new Client();
-const { Database } = require('wio.db');
-const kdb = new Database("isimler");
-const krank = new Database("kayıtrank");
+const { JsonDatabase } = require('wio.db');
+const kdb = new JsonDatabase("isimler");
+const krank = new JsonDatabase("kayıtrank");
 const fs = require("fs");
 require("./util/widLoader.js")(client);
 const moment = require("moment");
