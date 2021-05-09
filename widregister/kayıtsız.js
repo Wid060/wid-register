@@ -2,9 +2,7 @@ const { MessageEmbed } = require('discord.js')
 const config = require("../ayarlar/register.json");
 const { PREFIX } = require("../ayarlar/client.json");
 const moment = require("moment");
-const { Database } = require('wio.db');
-const kdb = new Database("isimler");
-const krank = new Database("kayıtrank");
+
 exports.run = (client,message,args) => {
 if (!message.member.roles.cache.has(config.register_staff) && !message.member.hasPermission("ADMINISTRATOR")) {
 message.react(config.no);
